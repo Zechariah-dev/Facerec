@@ -24,6 +24,10 @@ const theme = createMuiTheme({
       secondary: "#000E1F",
     },
   },
+  typography: {
+    fontFamily: ["Manrope", "sans-serif"].join(","),
+    fontSize: "18px",
+  },
 });
 
 const customTheme = responsiveFontSizes(theme);
