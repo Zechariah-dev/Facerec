@@ -17,7 +17,7 @@ const navigation = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(6),
+    paddingTop: theme.spacing(6),
   },
   nav_con: {
     display: "flex",
@@ -34,10 +34,13 @@ const useStyles = makeStyles((theme) => ({
   signin_btn: {
     backgroundColor: theme.palette.primary.main,
     width: "146px",
-    height: "43px",
+    height: "61px",
     textTransform: "capitalize",
     color: theme.palette.common.white,
     borderRadius: "10px",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.light
+    }
   },
 }));
 
@@ -77,7 +80,7 @@ export default function Navbar() {
                 </div>
               </Grid>
               <Grid item>
-                <Button href="/login" size="medium" className={classes.signin_btn}>
+                <Button href="/login" size="medium" className={classes.signin_btn} >
                   Sign in
                 </Button>
               </Grid>

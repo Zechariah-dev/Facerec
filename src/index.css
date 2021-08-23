@@ -8,11 +8,3 @@ body {
   line-height: 25px;
   overflow-x: hidden;
 }
-
-.home {
-  background-image: url("./assets/images/Bg_1.svg"),
-    url("./assets/images/Bg_2.svg");
-  background-position: top left, right bottom 100%;
-  background-size: auto;
-  background-repeat: no-repeat;
-}
