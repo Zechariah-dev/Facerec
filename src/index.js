@@ -1,32 +1,43 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter as Router } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router } from 'react-router-dom';
 import {
   createMuiTheme,
   ThemeProvider,
   responsiveFontSizes,
-} from "@material-ui/core/styles";
-import "./index.css";
+} from '@material-ui/core/styles';
+import './index.css';
 
 const theme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      tablet: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   palette: {
     primary: {
-      light: "#FF856D",
-      main: "#FF6246",
+      light: '#FF856D',
+      main: '#FF6246',
+      danger: '#f44336',
     },
     secondary: {
-      main: "#073567",
+      main: '#073567',
     },
     text: {
-      primary: "#455262",
-      secondary: "#000E1F",
+      primary: '#455262',
+      secondary: '#000E1F',
     },
   },
   typography: {
-    fontFamily: ["Manrope", "sans-serif"].join(","),
-    fontSize: "18px",
+    fontFamily: ['Manrope', 'sans-serif'].join(','),
+    fontSize: '18px',
   },
 });
 
@@ -38,7 +49,7 @@ ReactDOM.render(
       <App />
     </Router>
   </ThemeProvider>,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
