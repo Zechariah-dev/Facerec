@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import Grid from "@material-ui/core/grid";
-import { Button } from "@material-ui/core";
+import Button from "@material-ui/core/button";
 import Webcam from "react-webcam"
 
 // Navbar
