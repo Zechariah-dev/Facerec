@@ -1,127 +1,128 @@
-import React, { useState } from "react"
-import Grid from "@material-ui/core/grid";
-import Button from "@material-ui/core/button";
-import Webcam from "react-webcam"
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import * as Yup from 'yup';
 
-// Navbar
-import Navbar from "../Navbar";
+// useHistory for redirection
+import { useHistory } from "react-router-dom"
 
-// use Styles
-import useStyles from "./styles"
+//images
+import onboardingImage from '../../assets/images/onboarding.png';
+import backgroundImage from '../../assets/images/Bg_1.svg';
 
-// Icons
-import Ellipse from "../../assets/svgs/ellipse.svg";
-import Eye1 from "../../assets/svgs/eye1.svg";
-import Eye2 from "../../assets/svgs/eye2.svg";
-import TopRight from "../../assets/svgs/top-right.svg";
-import TopLeft from "../../assets/svgs/top-left.svg";
-import BottomRight from "../../assets/svgs/bottom-right.svg";
-import BottomLeft from "../../assets/svgs/bottom-left.svg";
-import FaceBg from "../../assets/svgs/face-bg.svg";
-import FaceBase from "../../assets/svgs/face-base.svg";
+// components
+import Form from '../Forms/Form';
+import FormField from '../Forms/FormField';
+import SubmitButton from '../Forms/SubmitButton';
+import Navbar from '../Navbar';
+
+const validationSchema = Yup.object().shape({
+	email: Yup.string()
+		.required()
+		.email()
+		.matches(/^[a-zA-Z]+@student\.oauife\.edu\.ng$/)
+		.label('Email'),
+	matricNumber: Yup.string()
+		.required()
+		.matches(/^[a-zA-Z]{3}\/[0-9]{4}\/[0-9]{3}$/)
+		.label('Matric number'),
+	password: Yup.string().required().min(6).label('Password'),
+});
+
+const useStyles = makeStyles((theme) => ({
+	column: {
+		[theme.breakpoints.up('tablet')]: {
+			flex: '50%',
+		},
+	},
+	form: {
+		paddingTop: '1rem',
+	},
+	formContainer: {
+		flexDirection: 'column',
+		margin: 0,
+		maxWidth: '100%',
+	},
+	heading: {
+		fontSize: '1.5rem',
+		[theme.breakpoints.up('md')]: {
+			fontSize: '2.5rem',
+		},
+	},
+	onboarding: {
+		display: 'none',
+		alignItems: 'center',
+		[theme.breakpoints.up('tablet')]: {
+			display: 'flex',
+		},
+	},
+	root: {
+		background: `url(${backgroundImage}) no-repeat`,
+		minHeight: '100vh',
+	},
+	textLight: {
+		color: theme.palette.text.primary,
+		fontSize: '0.9rem',
+		[theme.breakpoints.up('tablet')]: {
+			fontSize: '1rem',
+		},
+	},
+}));
 
 export default function Login() {
-	const {
-		scanButton,
-		img,
-		imgContainer,
-		root,
-		textContainer,
-		gridContainer,
-		textHead,
-		textBody,
-		ellipse,
-		eye1,
-		eye2,
-		topRight,
-		topLeft,
-		bottomRight,
-		bottomLeft,
-		faceBg,
-		faceBase,
-		verificationSuccess,
-		successButton,
-		redirectContainer
-	} = useStyles();
+	// call useHistory hook
+	const history = useHistory();
 
-	const [button, setButton] = useState("Start scan");
-	const [snappedImage, setSnappedImage] = useState(null);
-	const [redirect, setRedirect] = useState(false);
+	const initialValues = {
+		email: '',
+		matricNumber: '',
+		password: '',
+	};
+	const classes = useStyles();
 
-	const webcamRef = React.useRef(null);
-	const capture = () => {
-		if (!snappedImage) {
-			const imageSrc = webcamRef.current.getScreenshot();
-			setSnappedImage(imageSrc)
-			setButton("Reset")
-			setTimeout(() => {
-				setRedirect(true)
-			}, 6000);
-		} else {
-			setSnappedImage(null)
-			setButton("Start scan")
-		}
-	}
-
-	const RedirectComponent = (
-		<div className={redirectContainer}>
-			<div>
-				{/* Success component */}
-			</div>
-			<div>
-				<h3 className={verificationSuccess}>Verification successful</h3>
-			</div>
-			<Button className={successButton}>Continue To Exam</Button>
-		</div>
-	)
+	const handleSubmit = ({ email, matricNumber, password }) => {
+		history.push("/signup")
+	};
 
 	return (
-		<div>
+		<div className={classes.root}>
 			<Navbar />
-			{!redirect ?
-				<div className={root}>
-					<Grid container className={gridContainer} spacing={1}>
-						<Grid className={textContainer} item md={4} sm={12}>
-							<h3 className={textHead}>Face Recognition Instruction</h3>
-							<ol className={textBody}>
-								<li>Configure your browser to have access to device webcam</li>
-								<li>After permission is granted, scan your full face in the upload section</li>
-								<li>Make sure important parts like eyes, ear, nose and mouth is visible and clear</li>
-								<li>Remeber to give your browser camera access</li>
-							</ol>
-						</Grid>
-						<Grid className={imgContainer} item md={8} sm={12}>
-							{!snappedImage ?
-								<Webcam
-									className={img}
-									ref={webcamRef}
-									audio={false}
-									screenshotFormat="image/png"
-								/> :
-								<img src={snappedImage} className={img} alt="snapped" />
-							}
-							{!snappedImage ?
-								<>
-									<img src={Ellipse} className={ellipse} alt="icon" />
-									<img src={Eye1} className={eye1} alt="icon" />
-									<img src={Eye2} className={eye2} alt="icon" />
-									<img src={TopRight} className={topRight} alt="icon" />
-									<img src={TopLeft} className={topLeft} alt="icon" />
-									<img src={BottomRight} className={bottomRight} alt="icon" />
-									<img src={BottomLeft} className={bottomLeft} alt="icon" />
-								</> :
-								<>
-									<img src={FaceBg} className={faceBg} alt="icon" />
-									<img src={FaceBase} className={faceBase} alt="icon" />
-								</>
-							}
-						</Grid>
+			<Container maxWidth="xl">
+				<Grid container spacing={4}>
+					<Grid item xs={12} className={classes.column}>
+						<div className={classes.formContainer}>
+							<h1 className={classes.heading}>Jump right back in</h1>
+							<p className={classes.textLight}>Sign in to continue</p>
+							<div className={classes.form}>
+								<Form
+									initialValues={initialValues}
+									validationSchema={validationSchema}
+									onSubmit={handleSubmit}
+								>
+									<FormField
+										name="email"
+										label="Email (School email)"
+										type="email"
+									/>
+									<FormField name="matricNumber" label="Matriculation Number" />
+									<FormField name="password" label="Password" type="password" />
+									<SubmitButton>Sign in</SubmitButton>
+								</Form>
+							</div>
+						</div>
 					</Grid>
-					<Button onClick={capture} className={scanButton}>{button}</Button>
-				</div> :
-				<div>
-					{RedirectComponent}
-				</div>}
+					<Grid
+						item
+						xs={12}
+						className={`${classes.column} ${classes.onboarding}`}
+					>
+						<div>
+							<img width="100%" src={onboardingImage} alt="onboarding" />
+						</div>
+					</Grid>
+				</Grid>
+			</Container>
 		</div>
-	)
+	);
 }

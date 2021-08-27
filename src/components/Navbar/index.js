@@ -1,43 +1,48 @@
-import React, { Fragment } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
-import Toolbar from "@material-ui/core/Toolbar";
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
-import AppBar from "@material-ui/core/AppBar";
-import Button from "@material-ui/core/Button";
+import React, { Fragment } from 'react';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 
-import Logo from "../../assets/images/Logo.svg";
+import Logo from '../../assets/images/Logo.svg';
+import AppButton from '../Button/Button';
 
 const navigation = [
-  { label: "Features", href: "#features" },
-  { label: "How to use", href: "#howtouse" },
-  { label: "About", href: "#about" },
+  { label: 'Features', href: '#features' },
+  { label: 'How to use', href: '#howtouse' },
+  { label: 'About', href: '#about' },
 ];
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(6),
+    paddingTop: theme.spacing(6),
   },
   nav_con: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   nav_btn: {
-    textTransform: "capitalize",
-    textAlign: "center",
+    textTransform: 'capitalize',
+    textAlign: 'center',
     fontWeight: 400,
+    fontSize: '1rem',
     color: theme.palette.text.secondary,
-    margin: "0 20px",
+    margin: '0 20px',
   },
-  signin_btn: {
-    backgroundColor: theme.palette.primary.main,
-    width: "146px",
-    height: "43px",
-    textTransform: "capitalize",
-    color: theme.palette.common.white,
-    borderRadius: "10px",
+  logo: {
+    height: 'auto',
+    width: '150px',
+  },
+  mainContainer: {
+    '& > div': {
+      alignItems: 'center',
+      display: 'flex',
+      justifyContent: 'center',
+    },
   },
 }));
 
@@ -45,19 +50,26 @@ export default function Navbar() {
   //initializing the useStyles function
   const classes = useStyles();
 
+  const history = useHistory();
   const location = useLocation();
 
   //desktop view navbar
   const desktopNavbar = () => {
     return (
-      <Toolbar>
-        <Grid container>
+      <Toolbar disableGutters>
+        <Grid container className={classes.mainContainer}>
           <Grid item>
             <Link to="/">
-              <img src={Logo} height="40px" width="200px" alt="Facerec" />
+              <img
+                src={Logo}
+                height="40px"
+                width="200px"
+                alt="Facerec"
+                className={classes.logo}
+              />
             </Link>
           </Grid>
-          {location.pathname === "/" ? (
+          {location.pathname === '/' ? (
             <Fragment>
               <Grid item sm={true}>
                 <div className={classes.nav_con}>
@@ -77,11 +89,9 @@ export default function Navbar() {
                 </div>
               </Grid>
               <Grid item>
-                <Button size="medium" className={classes.signin_btn}>
-                  <Link to="/login">
-                    Sign in
-                  </Link>
-                </Button>
+                <AppButton onClick={() => history.push('/login')}>
+                  Sign in
+                </AppButton>
               </Grid>
             </Fragment>
           ) : (

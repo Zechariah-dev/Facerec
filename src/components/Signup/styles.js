@@ -7,22 +7,31 @@ const useStyles = makeStyles((theme) => ({
     width: "93%",
   },
   gridContainer: {
-    marginTop: "10px",
-    [theme.breakpoints.down('xs')]: {
-      marginTop: 0
-    }
+    marginTop: "10px"
   },
   scanButton: {
     position: "absolute",
     background: "#FF6246",
-    '&:hover': {
-      background: 'none',
-    },
     borderRadius: "10px",
     padding: "18px 44px",
     marginTop: "40px",
     right: "60px",
     color: "white",
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light,
+    },
+  },
+  verifyButton: {
+    position: "absolute",
+    background: "#FF6246",
+    borderRadius: "10px",
+    padding: "18px 44px",
+    marginTop: "120px",
+    right: "60px",
+    color: "white",
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light,
+    },
   },
   imgContainer: {
     margin: "auto",
@@ -43,6 +52,15 @@ const useStyles = makeStyles((theme) => ({
   },
   textContainer: {
     height: 400,
+    [theme.breakpoints.down('md')]: {
+      height: 210,
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: 310,
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: 380,
+    },
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -197,7 +215,7 @@ const useStyles = makeStyles((theme) => ({
     padding: "18px 44px",
     color: "white",
     '&:hover': {
-      background: 'none',
+      backgroundColor: theme.palette.primary.light,
     },
   },
   redirectContainer: {
