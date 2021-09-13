@@ -54,8 +54,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     positon: 'relative',
   },
-  drawer__con: {
+  drawer_con: {
     height: '100vh',
+    width: '100vw',
     color: theme.palette.common.white,
     background: theme.palette.primary.light,
     display: 'flex',
@@ -73,7 +74,14 @@ const useStyles = makeStyles((theme) => ({
       height: '2em',
     },
   },
-  drawer__inner: {
+  drawer_link: {
+    fontSize: '2rem',
+    lineHeight: '4rem',
+    color: theme.palette.common.white,
+    textDecoration: 'none',
+    textTransform: 'capitalize',
+  },
+  drawer_inner: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -186,7 +194,7 @@ export default function Navbar() {
 
         <Drawer
           anchor="left"
-          open={isMobile}
+          open={isDrawerOpen}
           onClose={handleDrawerClose}
           className={{ paper: classes.paper }}
         >

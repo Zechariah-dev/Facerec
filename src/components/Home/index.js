@@ -1,141 +1,195 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
+import React from 'react';
+import { makeStyles } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
-import Navbar from "../Navbar";
-import Hero from "../Hero";
-import Footer from "../Footer";
-import ScrollToTop from "../ScrollToTop";
+import Navbar from '../Navbar';
+import Hero from '../Hero';
+import Footer from '../Footer';
+import ScrollToTop from '../ScrollToTop';
 
-import Bg1 from "../../assets/images/Bg_1.svg";
-import Bg2 from "../../assets/images/Bg_2.svg";
+import Bg1 from '../../assets/images/Bg_1.svg';
+import Bg2 from '../../assets/images/Bg_2.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundImage: `url(${Bg1}), url(${Bg2})`,
-    backgroundPosition: "top left, right bottom 100%",
-    backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
+    backgroundPosition: 'top right 120%, bottom right -5%',
+    backgroundSize: 'unset',
+    backgroundRepeat: 'no-repeat',
   },
   heading: {
-    fontSize: "64px",
+    fontSize: '64px',
     fontWeight: 800,
     marginBottom: theme.spacing(5),
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '38px',
+    }
   },
   sub_heading: {
     color: theme.palette.text.secondary,
-    fontSize: "48px",
+    fontSize: '48px',
     marginBottom: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '1rem'
+    }
   },
   body: {
     marginBottom: theme.spacing(3),
+    [theme.breakpoints.down('sm')]: {
+      width: '85vw'
+    }
   },
   wrapper: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "column",
-    textAlign: "left",
-    height: "100%",
-    position: "relative",
-    boxSizing: "border-box",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    textAlign: 'left',
+    height: '100%',
+    position: 'relative',
+    boxSizing: 'border-box',
   },
   text_wrapper: {
-    display: "flex",
-    flexDirection: "column",
-    height: "100%",
-    justifyContent: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    justifyContent: 'center',
   },
   section: {
-    margin: "5rem 0",
-    padding: "2rem",
+    margin: '5rem 0',
+    padding: '2rem',
+    [theme.breakpoints.down('sm')]: {
+      padding: 0
+    }
   },
   lower_circle_1: {
-    width: "390px",
-    height: "390px",
-    backgroundColor: "#073567",
-    borderRadius: "50%",
+    width: '390px',
+    aspectRatio: '1/1',
+    backgroundColor: '#073567',
+    borderRadius: '50%',
     zIndex: theme.zIndex.drawer,
-    position: "relative",
-    right: "8%",
-    bottom: "-8%",
-    overflow: "hidden",
-    marginBottom: "0",
+    position: 'relative',
+    right: '8%',
+    bottom: '-8%',
+    overflow: 'hidden',
+    marginBottom: '0',
+    [theme.breakpoints.down('sm')]: {
+      width: '340px',
+      right: '5%'
+    }
   },
   upper_circle_1: {
-    width: "390px",
-    height: "390px",
-    backgroundColor: "#C4C4C4",
-    borderRadius: "50%",
+    width: '390px',
+    aspectRatio: '1/1',
+    backgroundColor: '#C4C4C4',
+    borderRadius: '50%',
     zIndex: theme.zIndex.modal,
-    position: "relative",
-    bottom: "80%",
-    left: "-3%",
-    overflow: "hidden",
-    marginBottom: "-55%",
+    position: 'relative',
+    bottom: '80%',
+    left: '-3%',
+    overflow: 'hidden',
+    marginBottom: '-55%',
+    [theme.breakpoints.down('sm')]: {
+      bottom: '50%',
+      left: 0,
+      width: '340px'
+    }
   },
   lower_circle_2: {
-    width: "390px",
-    height: "390px",
-    backgroundColor: "#073567",
-    borderRadius: "50%",
+    width: '390px',
+    aspectRatio: '1/1',
+    backgroundColor: '#073567',
+    borderRadius: '50%',
     zIndex: theme.zIndex.drawer,
-    position: "relative",
-    right: "-4%",
-    bottom: "-8%",
-    overflow: "hidden",
-    marginBottom: "0",
+    position: 'relative',
+    right: '-4%',
+    bottom: '-8%',
+    overflow: 'hidden',
+    marginBottom: '0',
+    [theme.breakpoints.down('sm')]: {
+      width: '340px',
+      bottom: '-6%'
+    }
   },
   upper_circle_2: {
-    width: "390px",
-    height: "390px",
-    backgroundColor: "#C4C4C4",
-    borderRadius: "50%",
+    width: '390px',
+    aspectRatio: '1/1',
+    backgroundColor: '#C4C4C4',
+    borderRadius: '50%',
     zIndex: theme.zIndex.modal,
-    position: "relative",
-    bottom: "80%",
-    left: "10%",
-    overflow: "hidden",
-    marginBottom: "-55%",
+    position: 'relative',
+    bottom: '80%',
+    left: '10%',
+    overflow: 'hidden',
+    marginBottom: '-55%',
+    [theme.breakpoints.down('sm')]: {
+      width: '350px',
+      left: 5,
+      bottom: '50%'
+    }
   },
   about_img: {
-    width: "520px",
-    height: "400px",
-    backgroundColor: "#c4c4c4",
+    width: '520px',
+    height: '400px',
+    backgroundColor: '#c4c4c4',
+    [theme.breakpoints.down('sm')]: {
+      width: '100vw',
+      marginTop: '1rem'
+    }
   },
   procedure: {
-    display: "flex",
-    flexDirection: "row",
-    gap: "1rem",
-    margin: "1.6rem 0"
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    alignItems: 'flex-start',
+    gap: '1rem',
+    margin: '1.6rem 0',
   },
-  procedure__desc: {
-
-  },
+  procedure__desc: {},
   procedure__title: {
-    fontSize: "36px",
-    fontWeight: 800,
-    lineHeight: "3.5rem"
+    fontSize: '30px',
+    fontWeight: 600,
+    lineHeight: '2.5rem',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '26px'
+    }
   },
   procedure__body: {
-    fontSize: "1.2rem",
-    color: theme.palette.text.primary
+    fontSize: '1rem',
+    color: theme.palette.text.primary,
   },
   index: {
-    height: "67px",
-    aspectRatio: "1/1",
+    height: '65px',
+    aspectRatio: '1/1',
     backgroundColor: theme.palette.primary.light,
-    borderRadius: "50%",
+    borderRadius: '50%',
     color: theme.palette.common.white,
-    fontSize: "36px",
+    fontSize: '30px',
     fontWeight: 800,
-    textAlign: "center",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center"
-  }
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  default: {
+    height: '700px',
+    width: '400px',
+    background: 'red',
+    [theme.breakpoints.down('sm')]: {
+      width: '85vw'
+    }
+  },
+  useBtn: {
+    marginTop: theme.spacing(3),
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.primary.main,
+    width: '185px',
+    height: '61px',
+    textTransform: 'capitalize',
+    fontSize: '18px',
+    borderRadius: '10px',
+  },
 }));
 
 export default function Home() {
@@ -209,47 +263,54 @@ export default function Home() {
             <Typography variant="h3" align="center" className={classes.heading}>
               How to Use
             </Typography>
-            <Grid container style={{ padding: "2rem" }}>
-              <Grid item md={6} xs={12}></Grid>
+            <Grid container>
               <Grid item md={6} xs={12}>
-                <div className={classes.procedure}>
-                  <div className={classes.index}>1</div>
-                  <div className={classes.procedure__desc}>
-                    <div className={classes.procedure__title}>
-                      Create an account
-                    </div>
-                    <div className={classes.procedure__body}>
-                      one morning when Gregor Samsa woke from troubled dreams,
-                      he found himself transformed in his bed into a horrible
-                      vermin.
-                    </div>
-                  </div>
+                <div className={classes.wrapper}>
+                  <div className={classes.default}></div>
                 </div>
-                <div className={classes.procedure}>
-                  <div className={classes.index}>2</div>
-                  <div className={classes.procedure__desc}>
-                    <div className={classes.procedure__title}>
-                      Generate/Input Code
-                    </div>
-                    <div className={classes.procedure__body}>
-                      one morning when Gregor Samsa woke from troubled dreams,
-                      he found himself transformed in his bed into a horrible
-                      vermin.
-                    </div>
-                  </div>
-                </div>
-                <div className={classes.procedure}>
-                  <div className={classes.index}>3</div>
-                  <div className={classes.procedure__desc}>
-                    <div className={classes.procedure__title}>
-                      You are ready to go!
-                    </div>
-                    <div className={classes.procedure__body}>
-                      one morning when Gregor Samsa woke from troubled dreams,
-                      he found himself transformed in his bed into a horrible
-                      vermin.
+              </Grid>
+              <Grid item md={6} xs={12}>
+                <div className={classes.wrapper}>
+                  <div className={classes.procedure}>
+                    <div className={classes.index}>1</div>
+                    <div className={classes.procedure__desc}>
+                      <div className={classes.procedure__title}>
+                        Create an account
+                      </div>
+                      <div className={classes.procedure__body}>
+                        one morning when Gregor Samsa woke from troubled dreams,
+                        he found himself transformed in his bed into a horrible
+                        vermin.
+                      </div>
                     </div>
                   </div>
+                  <div className={classes.procedure}>
+                    <div className={classes.index}>2</div>
+                    <div className={classes.procedure__desc}>
+                      <div className={classes.procedure__title}>
+                        Generate/Input Code
+                      </div>
+                      <div className={classes.procedure__body}>
+                        one morning when Gregor Samsa woke from troubled dreams,
+                        he found himself transformed in his bed into a horrible
+                        vermin.
+                      </div>
+                    </div>
+                  </div>
+                  <div className={classes.procedure}>
+                    <div className={classes.index}>3</div>
+                    <div className={classes.procedure__desc}>
+                      <div className={classes.procedure__title}>
+                        You are ready to go!
+                      </div>
+                      <div className={classes.procedure__body}>
+                        one morning when Gregor Samsa woke from troubled dreams,
+                        he found himself transformed in his bed into a horrible
+                        vermin.
+                      </div>
+                    </div>
+                  </div>
+                  <Button className={classes.useBtn}>Signup</Button>
                 </div>
               </Grid>
             </Grid>
@@ -259,7 +320,7 @@ export default function Home() {
             <Typography variant="h3" align="center" className={classes.heading}>
               About
             </Typography>
-            <Grid container style={{ padding: "2rem" }}>
+            <Grid container style={{ padding: '2rem' }}>
               <Grid item md={6} xs={12}>
                 <div className={classes.wrapper}>
                   <Typography

@@ -8,6 +8,10 @@ import Typography from "@material-ui/core/Typography";
 const useStyles = makeStyles((theme) => ({
   root: {
     height: "100vh",
+    [theme.breakpoints.down('sm')]: {
+      height: "100%",
+      marginBottom: "2rem"
+    }
   },
   wrapper: {
     display: "flex",
@@ -19,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "64px",
     fontWeight: 800,
     color: theme.palette.text.secondary,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '50px',
+      marginTop: '1rem'
+    }
   },
   body: {
     color: theme.palette.text.primary,
@@ -42,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     height: "100%",
     padding: "2rem",
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
+    }
   },
   inner_circle: {
     height: "407px",
