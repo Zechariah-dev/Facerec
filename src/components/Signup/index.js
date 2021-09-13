@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam"
+import axios from 'axios';
 import { useLocation } from "react-router-dom";
 
 // Navbar
@@ -69,7 +70,7 @@ export default function Login() {
       const config = {
         "Content-Type": "multipart/form-data",
       }
-      axios.post("http://0083-197-210-79-64.ngrok.io/docs/".dataToSubmit, config)
+      axios.post("http://0083-197-210-79-64.ngrok.io/docs/", dataToSubmit, config)
     } else {
       setSnappedImage(null)
       setButton("Start scan")
