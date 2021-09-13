@@ -175,7 +175,7 @@ const useStyles = makeStyles((theme) => ({
   default: {
     height: '700px',
     width: '400px',
-    background: 'red',
+    background: '#c4c4c4',
     [theme.breakpoints.down('sm')]: {
       width: '85vw'
     }

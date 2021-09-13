@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
     width: '80%',
     margin: '1rem',
     color: '#fff',
-    backgroundColor: '#3A3AC2',
+    backgroundColor: theme.palette.secondary.main,
     fontWeight: 700,
     textTransform: 'capitalize',
     outline: 0,
