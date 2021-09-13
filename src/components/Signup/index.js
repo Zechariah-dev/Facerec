@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam"
+import { useLocation } from "react-router-dom";
 
 // Navbar
 import Navbar from "../Navbar";
@@ -21,6 +22,9 @@ import FaceBg from "../../assets/face_svgs/face-bg.svg";
 import FaceBase from "../../assets/face_svgs/face-base.svg";
 
 export default function Login() {
+  const location = useLocation();
+
+  const { email, matricNumber, password } = location.state;
   const {
     scanButton,
     img,
@@ -55,6 +59,17 @@ export default function Login() {
       const imageSrc = webcamRef.current.getScreenshot();
       setSnappedImage(imageSrc)
       setButton("Reset")
+
+      const dataToSubmit = {
+        email,
+        matricNumber,
+        password
+      }
+
+      const config = {
+        "Content-Type": "multipart/form-data",
+      }
+      axios.post("http://0083-197-210-79-64.ngrok.io/docs/".dataToSubmit, config)
     } else {
       setSnappedImage(null)
       setButton("Start scan")

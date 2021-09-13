@@ -82,7 +82,7 @@ export default function Login() {
 	const classes = useStyles();
 
 	const handleSubmit = ({ email, matricNumber, password }) => {
-		history.push("/signup")
+		history.push("/signup", { email, matricNumber, password })
 	};
 
 	return (
