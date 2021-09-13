@@ -188,6 +188,7 @@ export default function Navbar() {
           aria-label="menu"
           aria-haspopup="true"
           onClick={handleDrawerOpen}
+          style={{fontSize: '1.8rem'}}
         >
           <MenuIcon />
         </IconButton>
