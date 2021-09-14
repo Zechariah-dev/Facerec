@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   textContainer: {
-    height: 400,
+    height: '100%',
     [theme.breakpoints.down('md')]: {
       height: 210,
     },

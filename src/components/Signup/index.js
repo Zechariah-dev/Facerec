@@ -70,7 +70,9 @@ export default function Login() {
       const config = {
         "Content-Type": "multipart/form-data",
       }
-      axios.post("http://0083-197-210-79-64.ngrok.io/docs/", dataToSubmit, config)
+      axios.post("http://46e7-197-210-45-145.ngrok.io/", dataToSubmit, config)
+              .then(response => console.log(response))
+              .catch(err => console.error(err))
     } else {
       setSnappedImage(null)
       setButton("Start scan")
