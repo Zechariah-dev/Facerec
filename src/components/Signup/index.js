@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
 import Webcam from "react-webcam"
 import axios from 'axios';
+import Form from 'form-data';
 import { useLocation } from "react-router-dom";
 
 // Navbar
@@ -21,11 +22,13 @@ import BottomRight from "../../assets/face_svgs/bottom-right.svg";
 import BottomLeft from "../../assets/face_svgs/bottom-left.svg";
 import FaceBg from "../../assets/face_svgs/face-bg.svg";
 import FaceBase from "../../assets/face_svgs/face-base.svg";
+import { formatMs } from "@material-ui/core";
 
 export default function Login() {
   const location = useLocation();
 
-  const { email, matricNumber, password } = location.state;
+  const { email, matricNumber, password, surname } = location.state;
+  console.log(location.state);
   const {
     scanButton,
     img,
@@ -61,16 +64,17 @@ export default function Login() {
       setSnappedImage(imageSrc)
       setButton("Reset")
 
-      const dataToSubmit = {
-        email,
-        matricNumber,
-        password
-      }
+      const form = new Form();
+
+      form.append('surname', surname );
+      form.append('matric_number', matricNumber);
+      form.append('image', snappedImage)
 
       const config = {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": `multipart/form-data; boundary=${form._boundary}`,
       }
-      axios.post("https://46e7-197-210-45-145.ngrok.io/compare", dataToSubmit, config)
+
+      axios.post("https://facerec-server.herokuapp.com/compare", form, config)
               .then(response => console.log(response))
               .catch(err => console.error(err))
     } else {
@@ -89,7 +93,7 @@ export default function Login() {
       </div>
       <Button className={successButton}>Continue To Exam</Button>
     </div>
-  )
+  )2
 
   return (
     <div>

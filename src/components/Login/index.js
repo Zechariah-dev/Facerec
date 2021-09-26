@@ -23,6 +23,7 @@ const validationSchema = Yup.object().shape({
 		.email()
 		.matches(/^[a-zA-Z]+@student\.oauife\.edu\.ng$/)
 		.label('Email'),
+	surname: Yup.string().required().label('Surname'),
 	matricNumber: Yup.string()
 		.required()
 		.matches(/^[a-zA-Z]{3}\/[0-9]{4}\/[0-9]{3}$/)
@@ -76,13 +77,14 @@ export default function Login() {
 
 	const initialValues = {
 		email: '',
+		surname: '',
 		matricNumber: '',
 		password: '',
 	};
 	const classes = useStyles();
 
-	const handleSubmit = ({ email, matricNumber, password }) => {
-		history.push("/signup", { email, matricNumber, password })
+	const handleSubmit = ({ email, matricNumber, password, surname }) => {
+		history.push("/signup", { email, matricNumber, surname, password })
 	};
 
 	return (
@@ -105,6 +107,7 @@ export default function Login() {
 										label="Email (School email)"
 										type="email"
 									/>
+									<FormField name="surname" label="Surname" type="text" />
 									<FormField name="matricNumber" label="Matriculation Number" />
 									<FormField name="password" label="Password" type="password" />
 									<SubmitButton>Sign in</SubmitButton>
