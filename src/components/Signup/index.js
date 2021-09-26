@@ -93,7 +93,7 @@ export default function Login() {
       </div>
       <Button className={successButton}>Continue To Exam</Button>
     </div>
-  )2
+  )
 
   return (
     <div>
