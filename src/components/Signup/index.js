@@ -77,8 +77,12 @@ export default function Login() {
 
     console.log('form: ' + form);
 
+    // 'https://b768-197-210-64-76.ngrok.io/'
+
+    // 'https://facerec-server.herokuapp.com/compare'
+
     axios
-      .post('https://facerec-server.herokuapp.com/compare', form, config)
+      .post('https://b768-197-210-64-76.ngrok.io/', form, config)
       .then((response) => console.log('response :' + response))
       .catch((err) => console.error('error: ' + err.response));
   }
