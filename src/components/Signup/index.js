@@ -80,7 +80,7 @@ export default function Login() {
     axios
       .post('https://facerec-server.herokuapp.com/compare', form, config)
       .then((response) => console.log('response :' + response))
-      .catch((err) => console.error('error: ' + err));
+      .catch((err) => console.error('error: ' + err.response));
   }
 
   // const capture = () => {
