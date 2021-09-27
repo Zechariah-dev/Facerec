@@ -22,12 +22,11 @@ import BottomRight from "../../assets/face_svgs/bottom-right.svg";
 import BottomLeft from "../../assets/face_svgs/bottom-left.svg";
 import FaceBg from "../../assets/face_svgs/face-bg.svg";
 import FaceBase from "../../assets/face_svgs/face-base.svg";
-import { formatMs } from "@material-ui/core";
 
 export default function Login() {
   const location = useLocation();
 
-  const { email, matricNumber, password, surname } = location.state;
+  const { email, matricNumber, surname } = location.state;
   console.log(location.state);
   const {
     scanButton,
