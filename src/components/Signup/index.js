@@ -26,7 +26,7 @@ import FaceBase from "../../assets/face_svgs/face-base.svg";
 export default function Login() {
   const location = useLocation();
 
-  const { email, matricNumber, surname } = location.state;
+  const { matricNumber, surname } = location.state;
   console.log(location.state);
   const {
     scanButton,
