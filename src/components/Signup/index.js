@@ -56,6 +56,8 @@ export default function Login() {
   // const [button, setButton] = useState("Start scan");
   const [imgSrc, setImgSrc] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [response, setResponse] = useState({});
+  const [error, setError] = useState(false);
 
   const webcamRef = React.useRef(null);
 
@@ -64,28 +66,38 @@ export default function Login() {
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
-  if (imgSrc) {
+  const compare = async () => {
+    if (!imgSrc) {
+      capture();
+    }
+
+    const blob = await fetch(imgSrc).then((res) => res.blob());
+
     const form = new Form();
 
     form.append('surname', surname);
     form.append('matric_number', matricNumber);
-    form.append('image', imgSrc);
+    form.append('image', blob);
 
     const config = {
       'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
     };
 
-    console.log('form: ' + form);
+    const ngrok_url = 'https://b768-197-210-64-76.ngrok.io/';
 
-    // 'https://b768-197-210-64-76.ngrok.io/'
-
-    // 'https://facerec-server.herokuapp.com/compare'
+    const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
     axios
-      .post('https://b768-197-210-64-76.ngrok.io/compare', form, config)
-      .then((response) => console.log('response :' + response))
-      .catch((err) => console.error('error: ' + err.response));
-  }
+      .post(heroku_url, form, { headers: config })
+      .then((response) => setResponse(response))
+      .catch((err) => console.error(err));
+
+    if (response.body.matches) {
+      setRedirect(true)
+    } else {
+      setError(true)
+    }
+  };
 
   // const capture = () => {
   //   if (!snappedImage) {
@@ -174,7 +186,8 @@ export default function Login() {
             </Grid>
           </Grid>
           <div>
-            <Button onClick={capture} className={scanButton}>
+            { error ? (<h1>please try again</h1>) : (null)}
+            <Button onClick={compare} className={scanButton}>
               Start Scan
             </Button>
           </div>
