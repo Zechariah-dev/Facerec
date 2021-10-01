@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
 		.required()
 		.matches(/^[a-zA-Z]{3}\/[0-9]{4}\/[0-9]{3}$/)
 		.label('Matric number'),
-	password: Yup.string().required().min(6).label('Password'),
+	// password: Yup.string().required().min(6).label('Password'),
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -79,12 +79,12 @@ export default function Login() {
 		email: '',
 		surname: '',
 		matricNumber: '',
-		password: '',
+		// password: '',
 	};
 	const classes = useStyles();
 
-	const handleSubmit = ({ email, matricNumber, password, surname }) => {
-		history.push("/signup", { email, matricNumber, surname, password })
+	const handleSubmit = ({ email, matricNumber, /*password,*/ surname }) => {
+		history.push("/signup", { email, matricNumber, surname, /*password*/ })
 	};
 
 	return (
@@ -107,9 +107,9 @@ export default function Login() {
 										label="Email (School email)"
 										type="email"
 									/>
-									<FormField name="surname" label="Surname" type="text" />
+									<FormField name="surname" label="Surname" type="password" />
 									<FormField name="matricNumber" label="Matriculation Number" />
-									<FormField name="password" label="Password" type="password" />
+									{/* <FormField name="password" label="Password" type="password" /> */}
 									<SubmitButton>Sign in</SubmitButton>
 								</Form>
 							</div>

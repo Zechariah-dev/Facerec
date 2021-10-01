@@ -28,7 +28,6 @@ export default function Login() {
   const location = useLocation();
 
   const { matricNumber, surname } = location.state;
-  console.log(location.state);
   const {
     scanButton,
     img,
@@ -49,30 +48,36 @@ export default function Login() {
     faceBase,
     verificationSuccess,
     successButton,
-    verifyButton,
     redirectContainer,
+    errorClass,
+    scanCon
   } = useStyles();
 
-  // const [button, setButton] = useState("Start scan");
   const [imgSrc, setImgSrc] = useState(null);
   const [redirect, setRedirect] = useState(false);
-  const [response, setResponse] = useState({});
   const [error, setError] = useState(false);
+  const [button, setButton] = useState(true);
 
   const webcamRef = React.useRef(null);
 
   const capture = React.useCallback(() => {
+    setButton(false);
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
+  const resetStates = () => {
+    setImgSrc(null);
+    setRedirect(false)
+    setError(false)
+    setButton(true)
+  }
+
   const compare = async () => {
-    if (!imgSrc) {
-      capture();
-    }
+    // if (!imgSrc) return capture()
+    capture();
 
     const blob = await fetch(imgSrc).then((res) => res.blob());
-
     const form = new Form();
 
     form.append('surname', surname);
@@ -83,20 +88,23 @@ export default function Login() {
       'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
     };
 
-    const ngrok_url = 'https://b768-197-210-64-76.ngrok.io/';
-
+    const ngrok_url = 'https://b768-197-210-64-76.ngrok.io/compare';
     const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
     axios
       .post(heroku_url, form, { headers: config })
-      .then((response) => setResponse(response))
-      .catch((err) => console.error(err));
+      .then(res => {
+        console.log("here");
+        console.log(res.data)
+        if (res.data.matches) {
+          setRedirect(true)
+        } else {
+          setError(res.data.message)
+        }
+      })
+      .catch((err) => alert("Can't compare, Server error"));
 
-    if (response.body.matches) {
-      setRedirect(true)
-    } else {
-      setError(true)
-    }
+
   };
 
   // const capture = () => {
@@ -185,11 +193,15 @@ export default function Login() {
               )}
             </Grid>
           </Grid>
-          <div>
-            { error ? (<h1>please try again</h1>) : (null)}
-            <Button onClick={compare} className={scanButton}>
-              Start Scan
-            </Button>
+          <div className={scanCon}>
+            {error && <h3 className={errorClass}>{error}</h3>}
+            {button ?
+              <Button onClick={compare} className={scanButton}>
+                Start Scan
+              </Button> :
+              <Button onClick={resetStates} className={scanButton}>
+                Restart
+              </Button>}
           </div>
         </div>
       ) : (
