@@ -188,7 +188,7 @@ export default function Navbar() {
           aria-label="menu"
           aria-haspopup="true"
           onClick={handleDrawerOpen}
-          style={{fontSize: '1.8rem'}}
+          style={{ fontSize: '1.8rem' }}
         >
           <MenuIcon />
         </IconButton>
@@ -210,6 +210,7 @@ export default function Navbar() {
               })}
               <Button
                 variant="contained"
+                onClick={() => history.push('/login')}
                 href="/login"
                 className={classes.drawer_btn}
               >
