@@ -9,30 +9,6 @@ const useStyles = makeStyles((theme) => ({
   gridContainer: {
     marginTop: "10px"
   },
-  scanButton: {
-    position: "absolute",
-    background: "#FF6246",
-    borderRadius: "10px",
-    padding: "18px 44px",
-    marginTop: "40px",
-    right: "60px",
-    color: "white",
-    '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-    },
-  },
-  verifyButton: {
-    position: "absolute",
-    background: "#FF6246",
-    borderRadius: "10px",
-    padding: "18px 44px",
-    marginTop: "120px",
-    right: "60px",
-    color: "white",
-    '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-    },
-  },
   imgContainer: {
     margin: "auto",
     width: "100%",
@@ -225,6 +201,28 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     width: "100vw",
     height: "80vh"
+  },
+  scanCon: {
+    margin: "40px 10px",
+  },
+  scanButton: {
+    position: "absolute",
+    background: "#FF6246",
+    borderRadius: "10px",
+    padding: "18px 44px",
+    margin: "10px 0",
+    right: "50px",
+    color: "white",
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light,
+    },
+  },
+  errorClass: {
+    margin: "10px",
+    display: "flex",
+    justifyContent: "right",
+    // marginTop: "40px",
+    color: "red"
   }
 }))
 

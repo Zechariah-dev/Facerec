@@ -28,7 +28,6 @@ export default function Login() {
   const location = useLocation();
 
   const { matricNumber, surname } = location.state;
-  console.log(location.state);
   const {
     scanButton,
     img,
@@ -49,14 +48,14 @@ export default function Login() {
     faceBase,
     verificationSuccess,
     successButton,
-    verifyButton,
     redirectContainer,
+    errorClass,
+    scanCon,
   } = useStyles();
 
-  // const [button, setButton] = useState("Start scan");
   const [imgSrc, setImgSrc] = useState(null);
   const [redirect, setRedirect] = useState(false);
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState('');
 
   const webcamRef = React.useRef(null);
 
@@ -65,13 +64,16 @@ export default function Login() {
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
 
+  const resetStates = () => {
+    setImgSrc(null);
+    setRedirect(false);
+  };
+
   const compare = async () => {
-    if (!imgSrc) {
-      capture();
-    }
+    // if (!imgSrc) return capture()
+    capture();
 
     const blob = await fetch(imgSrc).then((res) => res.blob());
-
     const form = new Form();
 
     form.append('surname', surname);
@@ -82,7 +84,7 @@ export default function Login() {
       'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
     };
 
-    const ngrok_url = 'https://27be-197-210-77-126.ngrok.io/';
+    const ngrok_url = 'https://27be-197-210-77-126.ngrok.io/compare';
 
     const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
