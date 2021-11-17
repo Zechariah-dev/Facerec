@@ -12,6 +12,7 @@ import ScrollToTop from '../ScrollToTop';
 
 import Bg1 from '../../assets/images/Bg_1.svg';
 import Bg2 from '../../assets/images/Bg_2.svg';
+import AboutImg from '../../assets/images/about.jpg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,21 +27,21 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(5),
     [theme.breakpoints.down('sm')]: {
       fontSize: '38px',
-    }
+    },
   },
   sub_heading: {
     color: theme.palette.text.secondary,
     fontSize: '48px',
     marginBottom: theme.spacing(3),
     [theme.breakpoints.down('sm')]: {
-      marginTop: '1rem'
-    }
+      marginTop: '1rem',
+    },
   },
   body: {
     marginBottom: theme.spacing(3),
     [theme.breakpoints.down('sm')]: {
-      width: '85vw'
-    }
+      width: '85vw',
+    },
   },
   wrapper: {
     display: 'flex',
@@ -62,8 +63,8 @@ const useStyles = makeStyles((theme) => ({
     margin: '5rem 0',
     padding: '2rem',
     [theme.breakpoints.down('sm')]: {
-      padding: 0
-    }
+      padding: 0,
+    },
   },
   lower_circle_1: {
     width: '390px',
@@ -78,8 +79,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '0',
     [theme.breakpoints.down('sm')]: {
       width: '340px',
-      right: '5%'
-    }
+      right: '5%',
+    },
   },
   upper_circle_1: {
     width: '390px',
@@ -95,8 +96,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       bottom: '50%',
       left: 0,
-      width: '340px'
-    }
+      width: '340px',
+    },
   },
   lower_circle_2: {
     width: '390px',
@@ -111,8 +112,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '0',
     [theme.breakpoints.down('sm')]: {
       width: '340px',
-      bottom: '-6%'
-    }
+      bottom: '-6%',
+    },
   },
   upper_circle_2: {
     width: '390px',
@@ -128,17 +129,21 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       width: '350px',
       left: 5,
-      bottom: '50%'
-    }
+      bottom: '50%',
+    },
   },
   about_img: {
     width: '520px',
     height: '400px',
     backgroundColor: '#c4c4c4',
+    backgroundImage: `url(${AboutImg})`,
+    backgroundPosition: 'center center',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
     [theme.breakpoints.down('sm')]: {
       width: '100vw',
-      marginTop: '1rem'
-    }
+      marginTop: '1rem',
+    },
   },
   procedure: {
     display: 'flex',
@@ -153,8 +158,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     lineHeight: '2.5rem',
     [theme.breakpoints.down('sm')]: {
-      fontSize: '26px'
-    }
+      fontSize: '26px',
+    },
   },
   procedure__body: {
     fontSize: '1rem',
@@ -177,8 +182,8 @@ const useStyles = makeStyles((theme) => ({
     width: '400px',
     background: '#c4c4c4',
     [theme.breakpoints.down('sm')]: {
-      width: '85vw'
-    }
+      width: '85vw',
+    },
   },
   useBtn: {
     marginTop: theme.spacing(3),

@@ -1,32 +1,35 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+import Man from '../../assets/images/blackman.png';
+import Woman from '../../assets/images/blackwoman.png';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: "100vh",
+    height: '100vh',
     [theme.breakpoints.down('sm')]: {
-      height: "100%",
-      marginBottom: "2rem"
-    }
+      height: '100%',
+      marginBottom: '2rem',
+    },
   },
   wrapper: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    height: "100%",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    height: '100%',
   },
   heading: {
-    fontSize: "64px",
+    fontSize: '64px',
     fontWeight: 800,
     color: theme.palette.text.secondary,
     [theme.breakpoints.down('sm')]: {
       fontSize: '50px',
-      marginTop: '1rem'
-    }
+      marginTop: '1rem',
+    },
   },
   body: {
     color: theme.palette.text.primary,
@@ -36,50 +39,52 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
     color: theme.palette.common.white,
     backgroundColor: theme.palette.primary.main,
-    width: "185px",
-    height: "61px",
-    textTransform: "capitalize",
-    fontSize: "18px",
-    borderRadius: "10px",
+    width: '185px',
+    height: '61px',
+    textTransform: 'capitalize',
+    fontSize: '18px',
+    borderRadius: '10px',
   },
   hero__img_wrapper: {
-    position: "relative",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    height: "100%",
-    padding: "2rem",
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+    padding: '2rem',
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   inner_circle: {
-    height: "407px",
-    width: "407px",
-    borderRadius: "50%",
+    height: '407px',
+    width: '407px',
+    borderRadius: '50%',
     backgroundColor: theme.palette.common.black,
   },
   lower_outer_circle: {
-    height: "148px",
-    width: "148px",
-    backgroundColor: "#FF9900",
-    borderRadius: "50%",
+    height: '148px',
+    width: '148px',
+    backgroundColor: '#FF9900',
+    borderRadius: '50%',
     zIndex: 1000,
-    position: "relative",
-    bottom: "25%",
-    right: "30%",
+    position: 'relative',
+    bottom: '25%',
+    right: '30%',
+    backgroundImage: `url(${Man})`,
   },
   upper_outer_circle: {
-    height: "148px",
-    width: "148px",
-    backgroundColor: "#15A412",
-    borderRadius: "50%",
+    height: '148px',
+    width: '148px',
+    backgroundColor: '#15A412',
+    borderRadius: '50%',
     zIndex: 1000,
-    position: "relative",
-    bottom: "110%",
-    left: "30%",
-    marginBottom: "-50%"
+    position: 'relative',
+    bottom: '110%',
+    left: '30%',
+    marginBottom: '-50%',
+    backgroundImage: `url(${Woman})`,
   },
 }));
 

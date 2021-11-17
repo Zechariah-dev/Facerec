@@ -56,8 +56,7 @@ export default function Login() {
   // const [button, setButton] = useState("Start scan");
   const [imgSrc, setImgSrc] = useState(null);
   const [redirect, setRedirect] = useState(false);
-  const [response, setResponse] = useState({});
-  const [error, setError] = useState(false);
+  const [response, setResponse] = useState();
 
   const webcamRef = React.useRef(null);
 
@@ -83,20 +82,14 @@ export default function Login() {
       'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
     };
 
-    const ngrok_url = 'https://b768-197-210-64-76.ngrok.io/';
+    const ngrok_url = 'https://27be-197-210-77-126.ngrok.io/';
 
     const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
     axios
       .post(heroku_url, form, { headers: config })
-      .then((response) => setResponse(response))
+      .then((response) => console.log(response))
       .catch((err) => console.error(err));
-
-    if (response.body.matches) {
-      setRedirect(true)
-    } else {
-      setError(true)
-    }
   };
 
   // const capture = () => {
@@ -186,7 +179,6 @@ export default function Login() {
             </Grid>
           </Grid>
           <div>
-            { error ? (<h1>please try again</h1>) : (null)}
             <Button onClick={compare} className={scanButton}>
               Start Scan
             </Button>
