@@ -4,8 +4,9 @@ import ScrollToTop from './components/ScrollToTop';
 
 //pages
 const Home = React.lazy(() => import('./components/Home'));
-const Signin = React.lazy(() => import('./components/Signin'));
+const Compare = React.lazy(() => import('./components/Compare'));
 const Login = React.lazy(() => import('./components/Login'));
+const CreateStudent = React.lazy(() => import('./components/CreateStudent'));
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
             <ScrollToTop />
           </Route>
           <Route path="/login" component={Login} />
-          <Route path="/signin" component={Signin} />
+          <Route path="/compare" component={Compare} />
+          <Route path="/signup" component={CreateStudent} />
         </Switch>
       </React.Fragment>
     </React.Suspense>

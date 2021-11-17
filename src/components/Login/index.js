@@ -1,11 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import * as Yup from 'yup';
 
 // useHistory for redirection
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 //images
 import onboardingImage from '../../assets/images/onboarding.png';
@@ -18,11 +18,6 @@ import SubmitButton from '../Forms/SubmitButton';
 import Navbar from '../Navbar';
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .required()
-    .email()
-    .matches(/^[a-zA-Z]+@student\.oauife\.edu\.ng$/)
-    .label('Email'),
   surname: Yup.string().required().label('Surname'),
   matricNumber: Yup.string()
     .required()
@@ -33,7 +28,7 @@ const validationSchema = Yup.object().shape({
 
 const useStyles = makeStyles((theme) => ({
   column: {
-    [theme.breakpoints.up('tablet')]: {
+    [theme.breakpoints.up('sm')]: {
       flex: '50%',
     },
   },
@@ -54,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   onboarding: {
     display: 'none',
     alignItems: 'center',
-    [theme.breakpoints.up('tablet')]: {
+    [theme.breakpoints.up('sm')]: {
       display: 'flex',
     },
   },
@@ -65,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   textLight: {
     color: theme.palette.text.primary,
     fontSize: '0.9rem',
-    [theme.breakpoints.up('tablet')]: {
+    [theme.breakpoints.up('sm')]: {
       fontSize: '1rem',
     },
   },
@@ -81,39 +76,39 @@ export default function Login() {
   };
   const classes = useStyles();
 
-  const handleSubmit = ({ matricNumber, surname }) => {
-    history.push('/signin', { matricNumber, surname });
+  const handleSubmit = ({matricNumber, surname}) => {
+    history.push('/compare', {matricNumber, surname});
   };
 
   return (
     <div className={classes.root}>
-      <Navbar />
+      <Navbar/>
       <Container maxWidth="xl">
         <Grid container spacing={4}>
           <Grid item xs={12} className={classes.column}>
             <div className={classes.formContainer}>
-              <h1 className={classes.heading}>Jump right back in</h1>
-              <p className={classes.textLight}>Sign in to continue</p>
+              <h1 className={classes.heading}> Jump right back in < /h1>
+              <p className={classes.textLight}> Sign in to continue </p>
               <div className={classes.form}>
                 <Form
                   initialValues={initialValues}
                   validationSchema={validationSchema}
-                  onSubmit={handleSubmit}
-                >
-                  <FormField name="matricNumber" label="Matriculation Number" />
-                  <FormField name="surname" label="Surname" type="password" />
-                  <SubmitButton>Sign in</SubmitButton>
+                  onSubmit={handleSubmit}>
+                  <FormField
+                    name="matricNumber"
+                    label="Matriculation Number"/>
+                  <FormField
+                    name="surname"
+                    label="Surname"
+                    type="password"/>
+                  <SubmitButton> Sign in < /SubmitButton>
                 </Form>
               </div>
             </div>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            className={`${classes.column} ${classes.onboarding}`}
-          >
+          <Grid item xs={12} className={`${classes.column} ${classes.onboarding}`}>
             <div>
-              <img width="100%" src={onboardingImage} alt="onboarding" />
+              <img width="100%" src={onboardingImage} alt="onboarding"/>
             </div>
           </Grid>
         </Grid>
