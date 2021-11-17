@@ -1,12 +1,11 @@
-import React from "react";
-import { Switch, Route } from "react-router-dom";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
 
 //pages
-const Home = React.lazy(() => import("./components/Home"));
-const Signup = React.lazy(() => import("./components/Signup"));
-const Login = React.lazy(() => import("./components/Login"))
-
+const Home = React.lazy(() => import('./components/Home'));
+const Signin = React.lazy(() => import('./components/Signin'));
+const Login = React.lazy(() => import('./components/Login'));
 
 function App() {
   return (
@@ -14,11 +13,11 @@ function App() {
       <React.Fragment>
         <Switch>
           <Route exact path="/">
-              <Home />
-              <ScrollToTop />
+            <Home />
+            <ScrollToTop />
           </Route>
-          <Route path="/login" component={Login}/>
-          <Route path="/signup" component={Signup}/>
+          <Route path="/login" component={Login} />
+          <Route path="/signin" component={Signin} />
         </Switch>
       </React.Fragment>
     </React.Suspense>

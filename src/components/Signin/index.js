@@ -84,40 +84,15 @@ export default function Login() {
       'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
     };
 
-    const ngrok_url = 'https://27be-197-210-77-126.ngrok.io/compare';
+    const ngrok_url = 'https://56d2-197-210-76-17.ngrok.io/compare';
 
     const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
     axios
-      .post(heroku_url, form, { headers: config })
+      .post(ngrok_url, form, { headers: config })
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
   };
-
-  // const capture = () => {
-  //   if (!snappedImage) {
-  //     const imageSrc = webcamRef.current.getScreenshot();
-  //     setSnappedImage(imageSrc)
-  //     setButton("Reset")
-
-  //     const form = new Form();
-
-  //     form.append('surname', surname );
-  //     form.append('matric_number', matricNumber);
-  //     form.append('image', snappedImage)
-
-  //     const config = {
-  //       "Content-Type": `multipart/form-data; boundary=${form._boundary}`,
-  //     }
-
-  //     axios.post("https://facerec-server.herokuapp.com/compare", form, config)
-  //             .then(response => console.log(response))
-  //             .catch(err => console.error(err))
-  //   } else {
-  //     setSnappedImage(null)
-  //     setButton("Start scan")
-  //   }
-  // }
 
   const RedirectComponent = (
     <div className={redirectContainer}>
