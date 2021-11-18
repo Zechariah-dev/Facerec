@@ -78,8 +78,10 @@ export default function CreateStudent() {
   const [image, setImage] = useState(null);
   const [response, setResponse] = useState(null);
   const [match, setMatch] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
+    setLoading(true);
     e.preventDefault();
 
     const form = new Form();
@@ -101,8 +103,12 @@ export default function CreateStudent() {
         if (res?.data?.matches) {
           setMatch(res.data.matches);
         }
+        setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   };
 
   return (
@@ -141,7 +147,7 @@ export default function CreateStudent() {
                   className={classes.fileInput}
                 />
                 <button type="submit" className={classes.btn}>
-                  Submit
+                  {loading ? 'Loading...' : 'Submit'}
                 </button>
               </form>
             </div>
@@ -153,6 +159,7 @@ export default function CreateStudent() {
                   {match ? (
                     <div>
                       <h1>Image Matches</h1>
+                      <h2>Student's details</h2>
                       <h3>{response.first_name}</h3>
                       <h3>{response.surname}</h3>
                       <h3>{response.matric_number}</h3>

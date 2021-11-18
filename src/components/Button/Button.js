@@ -5,13 +5,15 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   btn: {
     backgroundColor: theme.palette.primary.main,
-    width: '146px',
+    color: '#fff',
+    width: '100%',
+    margin: '10px',
     padding: '12px',
-    textTransform: 'none',
-    fontSize: '1.1rem',
-    fontWeight: '700',
-    color: theme.palette.common.white,
+    maxWidth: '250px',
+    fontWeight: 700,
     borderRadius: '10px',
+    textTransform: 'none',
+    fontSize: '14px',
     '&:hover': {
       backgroundColor: theme.palette.primary.light,
     },

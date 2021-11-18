@@ -161,7 +161,10 @@ export default function Navbar() {
               </Grid>
               <Grid item>
                 <AppButton onClick={() => history.push('/login')}>
-                  Sign in
+                  Sign With Camera
+                </AppButton>
+                <AppButton onClick={() => history.push('/compare-upload')}>
+                  Sign with Upload
                 </AppButton>
               </Grid>
             </Fragment>
@@ -208,13 +211,8 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <Button
-                variant="contained"
-                className={classes.drawer_btn}
-              >
-                <Link to='login'>
-                  Sign in
-                </Link>
+              <Button variant="contained" className={classes.drawer_btn}>
+                <Link to="login">Sign in</Link>
               </Button>
             </div>
           </div>
