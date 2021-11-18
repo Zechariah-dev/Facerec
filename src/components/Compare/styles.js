@@ -202,9 +202,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100vw",
     height: "80vh"
   },
-  scanCon: {
-    margin: "40px 10px",
-  },
   scanButton: {
     position: "absolute",
     background: "#FF6246",
@@ -217,12 +214,12 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: theme.palette.primary.light,
     },
   },
-  errorClass: {
-    margin: "10px",
-    display: "flex",
-    justifyContent: "right",
-    // marginTop: "40px",
-    color: "red"
+  responseStyle: {
+    width: '160px',
+    margin: '15px auto',
+    textAlign: 'center',
+    backgroundColor: 'green',
+    borderRadius: '5px'
   }
 }))
 

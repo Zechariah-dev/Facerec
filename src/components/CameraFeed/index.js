@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import './index.css';
 
 
 export class CameraFeed extends Component {
@@ -10,8 +11,8 @@ export class CameraFeed extends Component {
   }
 
   async setDevices(device) {
-    const {deviceId} = device;
-    const stream = await navigator.mediaDevices.getUserMedia({audio: false, video: {deviceId}});
+    const { deviceId } = device;
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { deviceId } });
     this.videoPlayer.srcObject = stream;
     await this.videoPlayer.play();
   }
@@ -30,14 +31,10 @@ export class CameraFeed extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <video ref={ref => (this.videoPlayer = ref)} width="680" height="360"/>
-        </div>
-        <button onClick={this.takePhoto}>Take Photo!</button>
-        <div>
-          <canvas width="680" height="360" ref={ref => (this.canvas = ref)} />
-        </div>
+      <div className='capture_container'>
+        <video className='video_con' ref={ref => (this.videoPlayer = ref)} />
+        <button className='take_photo_button' onClick={this.takePhoto}>Take Photo!</button>
+        <canvas className='captured_image' width="680" height="360" ref={ref => (this.canvas = ref)} />
       </div>
     )
   }

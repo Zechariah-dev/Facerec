@@ -1,13 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Webcam from 'react-webcam';
 import axios from 'axios';
 import Form from 'form-data';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import {CameraFeed} from "../CameraFeed";
+import { CameraFeed } from "../CameraFeed";
 
 // Navbar
 import Navbar from '../Navbar';
@@ -30,7 +29,7 @@ export default function Login() {
   const location = useLocation();
 
   // destruct location state
-  const {matricNumber, surname} = location.state;
+  const { matricNumber, surname } = location.state;
 
   // styles
   const {
@@ -54,8 +53,7 @@ export default function Login() {
     verificationSuccess,
     successButton,
     redirectContainer,
-    errorClass,
-    scanCon,
+    responseStyle,
   } = useStyles();
 
   const [imgSrc, setImgSrc] = useState(null);
@@ -72,17 +70,21 @@ export default function Login() {
   const resetStates = () => {
     setImgSrc(null);
     setRedirect(false);
+    setResponse('')
   };
 
   const compare = async () => {
     // if (!imgSrc) return capture()
-    capture();
+    // capture();
 
     const blob = await fetch(imgSrc).then((res) => res.blob());
 
-    const img = new File([blob], "user.jpeg", {type: "image/jpeg"})
+    const img = new File([blob], "user.jpeg", { type: "image/jpeg" })
 
     const form = new Form();
+    console.log(surname)
+    console.log(matricNumber)
+    console.log(img)
 
     form.append('surname', surname);
     form.append('matric_number', matricNumber);
@@ -97,9 +99,11 @@ export default function Login() {
     const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
     axios
-      .post(ngrok_url, form, {headers: config})
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
+      .post(heroku_url, form, { headers: config })
+      .then((res) => {
+        setResponse(res.data.message)
+      })
+      .catch((err) => console.error(err.response));
   };
 
   const uploadImage = async (file) => {
@@ -118,31 +122,27 @@ export default function Login() {
     const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
     axios
-      .post(ngrok_url, form, {headers: config})
+      .post(heroku_url, form, { headers: config })
       .then((response) => console.log(response))
       .catch((err) => console.error(err));
-
-
   }
 
   const RedirectComponent = (
     <div className={redirectContainer}>
-      <div> { /* Success component */} < /div>
+      <div> { /* Success component */} </div>
       <div>
-        <h3 className={verificationSuccess}> Verification successful < /h3>
+        <h3 className={verificationSuccess}> Verification successful </h3>
       </div>
-      <Button className={successButton}> Continue To Exam < /Button>
+      <Button className={successButton}> Continue To Exam </Button>
     </div>
   );
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       {!redirect ? (
         <div className={root}>
-          <
-            Grid container className={gridContainer}
-                 spacing={1}>
+          <Grid container className={gridContainer} spacing={1}>
             <Grid
               className={textContainer}
               item md={4}
@@ -163,88 +163,53 @@ export default function Login() {
                 </li>
               </ol>
             </Grid>
-            <Grid className={imgContainer}
-                  item md={8}
-                  sm={12}> {!imgSrc ? (
-
-                    <CameraFeed sendFile={uploadImage}/>
-
-              // <Webcam
-              //   className={img}
-              //   ref={webcamRef}
-              //   audio={false}
-              //   screenshotFormat="image/jpeg"
-              // />
-            ) : (<
-              img src={imgSrc}
-                  className={img}
-                  alt="snapped" / >
-              )
-              } {
-              !imgSrc ? (<
-                        >
-                <
-                  img src={Ellipse}
-                      className={ellipse}
-                      alt="icon" / >
-                  <
-                    img src={Eye1}
-                        className={eye1}
-                        alt="icon" / >
-                    <
-                      img src={Eye2}
-                          className={eye2}
-                          alt="icon" / >
-                      <
-                        img src={TopRight}
-                            className={topRight}
-                            alt="icon" / >
-                        <
-                          img src={TopLeft}
-                              className={topLeft}
-                              alt="icon" / >
-                          <
-                            img src={BottomRight}
-                                className={bottomRight}
-                                alt="icon" / >
-                            <
-                              img src={BottomLeft}
-                                  className={bottomLeft}
-                                  alt="icon" / >
-                            <
-                        />
-                            ) : ( <
-                        >
-                          <
-                            img src={FaceBg}
-                                className={faceBg}
-                                alt="icon" / >
-                            <
-                              img src={FaceBase}
-                                  className={faceBase}
-                                  alt="icon" / >
-                            <
-                        />
-                            )
-                            } <
-                /Grid> < /
-                            Grid>
-                            <
-                              div>
-                              <
-                                Button onClick={compare}
-                                       className={scanButton}>
-                                Start Scan <
-                /Button>< /
-                              div>
-                          <
-                /div>
-                          ) : ( <
-                          div> {RedirectComponent} < /div>
-                          )
-                          } <
-        /div>
-
-                        );
-                        }
+            <Grid className={imgContainer} item md={8} sm={12}>
+              <CameraFeed sendFile={uploadImage} />
+              {/* <Webcam
+                 className={img}
+                 ref={webcamRef}
+                 audio={false}
+                 screenshotFormat="image/jpeg"
+                 /> */}
+              {!imgSrc ? (<>
+                <img src={Ellipse}
+                  className={ellipse}
+                  alt="icon" />
+                <img src={Eye1}
+                  className={eye1}
+                  alt="icon" />
+                <img src={Eye2}
+                  className={eye2}
+                  alt="icon" />
+                <img src={TopRight}
+                  className={topRight}
+                  alt="icon" />
+                <img src={TopLeft}
+                  className={topLeft}
+                  alt="icon" />
+                <img src={BottomRight}
+                  className={bottomRight}
+                  alt="icon" />
+                <img src={BottomLeft}
+                  className={bottomLeft}
+                  alt="icon" />
+              </>) : (<>
+                <img src={FaceBg}
+                  className={faceBg}
+                  alt="icon" />
+                <img src={FaceBase}
+                  className={faceBase}
+                  alt="icon" />
+              </>)}
+            </Grid>
+          </Grid>
+          <div>
+            {response && <div className={responseStyle}>{response}</div>}
+            <Button onClick={compare} className={scanButton}>Start Scan</Button>
+          </div>
+        </div>) :
+        (<div>{RedirectComponent}</div>)
+      }
+    </div>);
+}
 
