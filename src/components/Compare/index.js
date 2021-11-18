@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import Webcam from 'react-webcam';
 import axios from 'axios';
 import Form from 'form-data';
 import { useLocation } from 'react-router-dom';
@@ -54,8 +53,7 @@ export default function Login() {
     verificationSuccess,
     successButton,
     redirectContainer,
-    errorClass,
-    scanCon,
+    responseStyle,
   } = useStyles();
 
   const [imgSrc, setImgSrc] = useState(null);
@@ -64,43 +62,11 @@ export default function Login() {
 
   const webcamRef = React.useRef(null);
 
-  const capture = React.useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imageSrc);
-  }, [webcamRef, setImgSrc]);
-
   const resetStates = () => {
     setImgSrc(null);
     setRedirect(false);
+    setResponse('')
   };
-
-  // const compare = async () => {
-  //   // if (!imgSrc) return capture()
-  //   capture();
-
-  //   const blob = await fetch(imgSrc).then((res) => res.blob());
-
-  //   const img = new File([blob], 'user.jpeg', { type: 'image/jpeg' });
-
-  //   const form = new Form();
-
-  //   form.append('surname', surname);
-  //   form.append('matric_number', matricNumber);
-  //   form.append('image', img);
-
-  //   const config = {
-  //     'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
-  //   };
-
-  //   const ngrok_url = 'http://localhost:5000/compare';
-
-  //   const heroku_url = 'https://facerec-server.herokuapp.com/compare';
-
-  //   axios
-  //     .post(ngrok_url, form, { headers: config })
-  //     .then((response) => console.log(response))
-  //     .catch((err) => console.error(err));
-  // };
 
   const uploadImage = async (file) => {
     const form = new Form();

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -74,11 +73,11 @@ const useStyles = makeStyles((theme) => ({
 export default function CreateStudent() {
   const classes = useStyles();
 
-  const history = useHistory();
-
   const [matricNumber, setMatricNumber] = useState('');
   const [surname, setSurname] = useState('');
   const [image, setImage] = useState(null);
+  const [response, setResponse] = useState(null);
+  const [match, setMatch] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -93,11 +92,16 @@ export default function CreateStudent() {
       'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
     };
 
-    const heroku_url = 'https://facerec-server.herokuapp.com/students';
+    const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
     axios
       .post(heroku_url, form, { headers: config })
-      .then((response) => history.push('/'))
+      .then((res) => {
+        setResponse(res.data);
+        if (res?.data?.matches) {
+          setMatch(res.data.matches);
+        }
+      })
       .catch((err) => console.error(err));
   };
 
@@ -109,10 +113,7 @@ export default function CreateStudent() {
           <Grid item xs={12} md={6}>
             <div style={{ padding: '3rem 1rem' }}>
               <Typography variant="h3" className={classes.heading}>
-                Create Student Account
-              </Typography>
-              <Typography variant="body1" className={classes.body}>
-                fill the form to create a student account before proceeding
+                Face Recognition
               </Typography>
               <form onSubmit={handleSubmit} className={classes.form}>
                 <label htmlFor="surname">Surname</label>
@@ -147,7 +148,22 @@ export default function CreateStudent() {
           </Grid>
           <Grid item xs={12} md={6}>
             <div>
-              <img width="100%" src={onBoardingImage} alt="onboarding" />
+              {response ? (
+                <div>
+                  {match ? (
+                    <div>
+                      <h1>Image Matches</h1>
+                      <h3>{response.first_name}</h3>
+                      <h3>{response.surname}</h3>
+                      <h3>{response.matric_number}</h3>
+                    </div>
+                  ) : (
+                    <h1>{response.message}</h1>
+                  )}
+                </div>
+              ) : (
+                <img width="100%" src={onBoardingImage} alt="onboarding" />
+              )}
             </div>
           </Grid>
         </Grid>

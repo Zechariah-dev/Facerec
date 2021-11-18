@@ -1,0 +1,40 @@
+.capture_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.video_con {
+  width: 80%;
+  margin: auto 20px;
+}
+.take_photo_button {
+  background-color: rgb(150, 149, 149);
+  border-radius: 5px;
+  padding: 7px 15px;
+  border: none;
+  outline: none;
+  font-size: 17px;
+  margin: 20px 0;
+}
+.captured_image {
+  margin: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 920) {
+  .video_con {
+    width: 85%;
+    margin: auto 30px;
+  }
+}
+
+@media screen and (max-width: 450 ) {
+  .video_con {
+    width: 90%;
+    margin: auto 10px;
+  }
+  
+} 

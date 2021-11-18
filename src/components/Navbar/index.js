@@ -210,11 +210,11 @@ export default function Navbar() {
               })}
               <Button
                 variant="contained"
-                onClick={() => history.push('/login')}
-                href="/login"
                 className={classes.drawer_btn}
               >
-                Sign in
+                <Link to='login'>
+                  Sign in
+                </Link>
               </Button>
             </div>
           </div>
