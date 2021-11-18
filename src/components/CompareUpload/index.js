@@ -100,9 +100,7 @@ export default function CreateStudent() {
       .post(heroku_url, form, { headers: config })
       .then((res) => {
         setResponse(res.data);
-        if (res?.data?.matches) {
-          setMatch(res.data.matches);
-        }
+        setMatch(res?.data?.matches);
         setLoading(false);
       })
       .catch((err) => {
