@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Webcam from 'react-webcam';
 import axios from 'axios';
 import Form from 'form-data';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import {CameraFeed} from "../CameraFeed";
+import { CameraFeed } from '../CameraFeed';
 
 // Navbar
 import Navbar from '../Navbar';
@@ -30,7 +30,7 @@ export default function Login() {
   const location = useLocation();
 
   // destruct location state
-  const {matricNumber, surname} = location.state;
+  const { matricNumber, surname } = location.state;
 
   // styles
   const {
@@ -74,33 +74,33 @@ export default function Login() {
     setRedirect(false);
   };
 
-  const compare = async () => {
-    // if (!imgSrc) return capture()
-    capture();
+  // const compare = async () => {
+  //   // if (!imgSrc) return capture()
+  //   capture();
 
-    const blob = await fetch(imgSrc).then((res) => res.blob());
+  //   const blob = await fetch(imgSrc).then((res) => res.blob());
 
-    const img = new File([blob], "user.jpeg", {type: "image/jpeg"})
+  //   const img = new File([blob], 'user.jpeg', { type: 'image/jpeg' });
 
-    const form = new Form();
+  //   const form = new Form();
 
-    form.append('surname', surname);
-    form.append('matric_number', matricNumber);
-    form.append('image', img);
+  //   form.append('surname', surname);
+  //   form.append('matric_number', matricNumber);
+  //   form.append('image', img);
 
-    const config = {
-      'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
-    };
+  //   const config = {
+  //     'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
+  //   };
 
-    const ngrok_url = 'http://localhost:5000/compare';
+  //   const ngrok_url = 'http://localhost:5000/compare';
 
-    const heroku_url = 'https://facerec-server.herokuapp.com/compare';
+  //   const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
-    axios
-      .post(ngrok_url, form, {headers: config})
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
-  };
+  //   axios
+  //     .post(ngrok_url, form, { headers: config })
+  //     .then((response) => console.log(response))
+  //     .catch((err) => console.error(err));
+  // };
 
   const uploadImage = async (file) => {
     const form = new Form();
@@ -118,133 +118,79 @@ export default function Login() {
     const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
     axios
-      .post(ngrok_url, form, {headers: config})
-      .then((response) => console.log(response))
+      .post(heroku_url, form, { headers: config })
+      .then((response) => {
+        setRedirect(true);
+        console.log(response)
+      })
       .catch((err) => console.error(err));
-
-
-  }
+  };
 
   const RedirectComponent = (
     <div className={redirectContainer}>
-      <div> { /* Success component */} < /div>
+      <div> {/* Success component */} </div>
       <div>
-        <h3 className={verificationSuccess}> Verification successful < /h3>
+        <h3 className={verificationSuccess}> Verification successful </h3>
       </div>
-      <Button className={successButton}> Continue To Exam < /Button>
+      <Button className={successButton}> Continue To Exam </Button>
     </div>
   );
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       {!redirect ? (
         <div className={root}>
-          <
-            Grid container className={gridContainer}
-                 spacing={1}>
-            <Grid
-              className={textContainer}
-              item md={4}
-              sm={12}>
+          <Grid container className={gridContainer} spacing={1}>
+            <Grid className={textContainer} item md={4} sm={12}>
               <h3 className={textHead}> Face Recognition Instruction </h3>
               <ol className={textBody}>
+                <li>Configure your browser to have access to device webcam</li>
                 <li>
-                  Configure your browser to have access to device webcam
+                  After permission is granted, scan your full face in the upload
+                  section
                 </li>
                 <li>
-                  After permission is granted, scan your full face in the upload section
+                  Make sure important parts like eyes, ear, nose and mouth is
+                  visible and clear
                 </li>
-                <li>
-                  Make sure important parts like eyes, ear, nose and mouth is visible and clear
-                </li>
-                <li>
-                  Remember to give your browser camera access
-                </li>
+                <li>Remember to give your browser camera access</li>
               </ol>
             </Grid>
-            <Grid className={imgContainer}
-                  item md={8}
-                  sm={12}> {!imgSrc ? (
-
-                    <CameraFeed sendFile={uploadImage}/>
-
-              // <Webcam
-              //   className={img}
-              //   ref={webcamRef}
-              //   audio={false}
-              //   screenshotFormat="image/jpeg"
-              // />
-            ) : (<
-              img src={imgSrc}
-                  className={img}
-                  alt="snapped" / >
-              )
-              } {
-              !imgSrc ? (<
-                        >
-                <
-                  img src={Ellipse}
-                      className={ellipse}
-                      alt="icon" / >
-                  <
-                    img src={Eye1}
-                        className={eye1}
-                        alt="icon" / >
-                    <
-                      img src={Eye2}
-                          className={eye2}
-                          alt="icon" / >
-                      <
-                        img src={TopRight}
-                            className={topRight}
-                            alt="icon" / >
-                        <
-                          img src={TopLeft}
-                              className={topLeft}
-                              alt="icon" / >
-                          <
-                            img src={BottomRight}
-                                className={bottomRight}
-                                alt="icon" / >
-                            <
-                              img src={BottomLeft}
-                                  className={bottomLeft}
-                                  alt="icon" / >
-                            <
-                        />
-                            ) : ( <
-                        >
-                          <
-                            img src={FaceBg}
-                                className={faceBg}
-                                alt="icon" / >
-                            <
-                              img src={FaceBase}
-                                  className={faceBase}
-                                  alt="icon" / >
-                            <
-                        />
-                            )
-                            } <
-                /Grid> < /
-                            Grid>
-                            <
-                              div>
-                              <
-                                Button onClick={compare}
-                                       className={scanButton}>
-                                Start Scan <
-                /Button>< /
-                              div>
-                          <
-                /div>
-                          ) : ( <
-                          div> {RedirectComponent} < /div>
-                          )
-                          } <
-        /div>
-
-                        );
-                        }
-
+            <Grid className={imgContainer} item md={8} sm={12}>
+              {' '}
+              {!imgSrc ? (
+                <CameraFeed sendFile={uploadImage} />
+              ) : (
+                <img src={imgSrc} className={img} alt="snapped" />
+              )}{' '}
+              {!imgSrc ? (
+                <>
+                  <img src={Ellipse} className={ellipse} alt="icon" />
+                  <img src={Eye1} className={eye1} alt="icon" />
+                  <img src={Eye2} className={eye2} alt="icon" />
+                  <img src={TopRight} className={topRight} alt="icon" />
+                  <img src={TopLeft} className={topLeft} alt="icon" />
+                  <img src={BottomRight} className={bottomRight} alt="icon" />
+                  <img src={BottomLeft} className={bottomLeft} alt="icon" />
+                </>
+              ) : (
+                <>
+                  <img src={FaceBg} className={faceBg} alt="icon" />
+                  <img src={FaceBase} className={faceBase} alt="icon" />
+                </>
+              )}{' '}
+            </Grid>{' '}
+          </Grid>
+          <div>
+            {/* <Button onClick={compare} className={scanButton}>
+              Start Scan{' '}
+            </Button> */}
+          </div>
+        </div>
+      ) : (
+        <div> {RedirectComponent} </div>
+      )}{' '}
+    </div>
+  );
+}

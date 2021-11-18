@@ -1,11 +1,11 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import * as Yup from 'yup';
 
 // useHistory for redirection
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 //images
 import onboardingImage from '../../assets/images/onboarding.png';
@@ -76,39 +76,39 @@ export default function Login() {
   };
   const classes = useStyles();
 
-  const handleSubmit = ({matricNumber, surname}) => {
-    history.push('/compare', {matricNumber, surname});
+  const handleSubmit = ({ matricNumber, surname }) => {
+    history.push('/compare', { matricNumber, surname });
   };
 
   return (
     <div className={classes.root}>
-      <Navbar/>
+      <Navbar />
       <Container maxWidth="xl">
         <Grid container spacing={4}>
           <Grid item xs={12} className={classes.column}>
             <div className={classes.formContainer}>
-              <h1 className={classes.heading}> Jump right back in < /h1>
+              <h1 className={classes.heading}> Jump right back in </h1>
               <p className={classes.textLight}> Sign in to continue </p>
               <div className={classes.form}>
                 <Form
                   initialValues={initialValues}
                   validationSchema={validationSchema}
-                  onSubmit={handleSubmit}>
-                  <FormField
-                    name="matricNumber"
-                    label="Matriculation Number"/>
-                  <FormField
-                    name="surname"
-                    label="Surname"
-                    type="password"/>
-                  <SubmitButton> Sign in < /SubmitButton>
+                  onSubmit={handleSubmit}
+                >
+                  <FormField name="matricNumber" label="Matriculation Number" />
+                  <FormField name="surname" label="Surname" type="password" />
+                  <SubmitButton> Sign in </SubmitButton>
                 </Form>
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} className={`${classes.column} ${classes.onboarding}`}>
+          <Grid
+            item
+            xs={12}
+            className={`${classes.column} ${classes.onboarding}`}
+          >
             <div>
-              <img width="100%" src={onboardingImage} alt="onboarding"/>
+              <img width="100%" src={onboardingImage} alt="onboarding" />
             </div>
           </Grid>
         </Grid>
