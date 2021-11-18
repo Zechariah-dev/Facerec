@@ -62,49 +62,43 @@ export default function Login() {
 
   const webcamRef = React.useRef(null);
 
-  const capture = React.useCallback(() => {
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imageSrc);
-  }, [webcamRef, setImgSrc]);
-
   const resetStates = () => {
     setImgSrc(null);
     setRedirect(false);
     setResponse('')
   };
 
-  const compare = async () => {
-    // if (!imgSrc) return capture()
-    // capture();
+  // const compare = async () => {
+  //   const blob = await fetch(imgSrc).then((res) => res.blob());
 
-    const blob = await fetch(imgSrc).then((res) => res.blob());
+  //   const img = new File([blob], "user.jpeg", { type: "image/jpeg" })
 
-    const img = new File([blob], "user.jpeg", { type: "image/jpeg" })
+  //   const form = new Form();
+  //   console.log(surname)
+  //   console.log(matricNumber)
+  //   console.log(img)
 
-    const form = new Form();
-    console.log(surname)
-    console.log(matricNumber)
-    console.log(img)
+  //   form.append('surname', surname);
+  //   form.append('matric_number', matricNumber);
+  //   form.append('image', img);
 
-    form.append('surname', surname);
-    form.append('matric_number', matricNumber);
-    form.append('image', img);
+  //   const config = {
+  //     'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
+  //   };
 
-    const config = {
-      'Content-Type': `multipart/form-data; boundary=${form._boundary}`,
-    };
+  //   const ngrok_url = 'http://localhost:5000/compare';
 
-    const ngrok_url = 'http://localhost:5000/compare';
+  //   const heroku_url = 'https://facerec-server.herokuapp.com/compare';
 
-    const heroku_url = 'https://facerec-server.herokuapp.com/compare';
+  //   axios
+  //     .post(heroku_url, form, { headers: config })
+  //     .then((res) => {
+  //       setResponse(res.data.message)
+  //     })
+  //     .catch((err) => console.error(err.response));
+  // };
 
-    axios
-      .post(heroku_url, form, { headers: config })
-      .then((res) => {
-        setResponse(res.data.message)
-      })
-      .catch((err) => console.error(err.response));
-  };
+
 
   const uploadImage = async (file) => {
     const form = new Form();
@@ -123,7 +117,9 @@ export default function Login() {
 
     axios
       .post(heroku_url, form, { headers: config })
-      .then((response) => console.log(response))
+      .then((res) => {
+        setResponse(res.data.message)
+      })
       .catch((err) => console.error(err));
   }
 
@@ -205,7 +201,6 @@ export default function Login() {
           </Grid>
           <div>
             {response && <div className={responseStyle}>{response}</div>}
-            <Button onClick={compare} className={scanButton}>Start Scan</Button>
           </div>
         </div>) :
         (<div>{RedirectComponent}</div>)

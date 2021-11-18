@@ -33,7 +33,7 @@ export class CameraFeed extends Component {
     return (
       <div className='capture_container'>
         <video className='video_con' ref={ref => (this.videoPlayer = ref)} />
-        <button className='take_photo_button' onClick={this.takePhoto}>Take Photo!</button>
+        <button className='take_photo_button' onClick={this.takePhoto}>Scan Face</button>
         <canvas className='captured_image' width="680" height="360" ref={ref => (this.canvas = ref)} />
       </div>
     )
