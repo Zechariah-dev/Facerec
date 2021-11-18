@@ -118,6 +118,7 @@ export default function Login() {
     axios
       .post(heroku_url, form, { headers: config })
       .then((res) => {
+      console.log(res.data);
         setResponse(res.data.message)
       })
       .catch((err) => console.error(err));
