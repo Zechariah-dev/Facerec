@@ -82,6 +82,7 @@ export default function CreateStudent() {
 
   const handleSubmit = (e) => {
     setLoading(true);
+    setResponse(null);
     e.preventDefault();
 
     const form = new Form();
@@ -163,7 +164,11 @@ export default function CreateStudent() {
                       <h3>{response.matric_number}</h3>
                     </div>
                   ) : (
-                    <h1>{!response.match ? 'Image doesnt match': response.message}</h1>
+                    <h1>
+                      {!response.match
+                        ? 'Image doesnt match'
+                        : response.message}
+                    </h1>
                   )}
                 </div>
               ) : (
